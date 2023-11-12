@@ -155,6 +155,10 @@ class Entry extends AbstractEntry
             }
         }
 
+        if (empty($thumbnails)) {
+            return null;
+        }
+
         // Try to send back the largest thumbnail (assuming there are more than one)
         $maxWidthKey = 0;
         $currentWidth = 0;
