@@ -244,9 +244,11 @@ class Entry extends AbstractEntry
         // Check for media content tags (covers both standalone and nested media:group)
         $media = $this->xpath->query($this->getXpathPrefix() . '//' . static::MEDIA_NAMESPACE . ':content');
 
-        if ($media->count()) {
+        // This is why we have tests, but unfortunately I didn't write any for this library lol
+        if (!$media->count()) {
             return null;
         }
+
 
         $maxWidthKey = 0;
         $mediaContents = [];
@@ -267,7 +269,6 @@ class Entry extends AbstractEntry
                 $i++;
             }
         }
-
         // Return the image with the highest width
         return $mediaContents[$maxWidthKey] ?? null;
     }
